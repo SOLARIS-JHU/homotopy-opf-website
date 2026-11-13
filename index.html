@@ -75,7 +75,7 @@
             <p>This work guides self-supervised training through a sequence of easier problems, gradually restoring the original objective and constraints while carrying the learned weights forward.</p>
             <a class="text-link" href="#method">Explore the method <span aria-hidden="true">↓</span></a>
           </div>
-          <figure class="hero-art" aria-labelledby="abstract-caption">
+          <figure class="hero-art" id="graphical-abstract" aria-labelledby="abstract-caption">
             <object id="solaris-abstract" type="image/svg+xml" data="assets/solaris-acopf.svg" width="760" height="392" aria-label="SOLARIS graphical abstract: a neural solution map learns through successive relaxed optimization problems toward full AC grid physics.">
               <img src="assets/solaris-acopf.svg" width="760" height="392" alt="SOLARIS graphical abstract showing neural predictions, homotopy training stages, and AC grid physics.">
             </object>
@@ -119,11 +119,18 @@
       <div class="wrap">
         <p class="eyebrow">The method</p>
         <h2 id="method-title">Change the training problem, retain the learned weights</h2>
-        <p class="prose">A neural policy \(x=\pi_\Theta(\xi)\) maps problem parameters to candidate decisions. During offline training, \(\lambda_H\) moves from 0 to 1. At each stage, automatic differentiation updates \(\Theta\) using the current objective and constraint penalties; the next stage starts from those weights.</p>
-        <figure class="figure graphical-abstract">
-          <a href="assets/method-overview.svg" aria-label="Open the full-size method diagram"><picture><source media="(max-width: 650px)" srcset="assets/method-overview-mobile.svg"><img src="assets/method-overview.svg" width="1100" height="650" alt="Offline training: loads pass through a neural policy to voltage and generation predictions. Homotopy-transformed objective and constraints plus the unchanged generation pull-up penalty produce a loss, differentiated back to the network weights. The schedule advances lambda with warm starts. Inference uses fixed trained weights to predict approximate decisions."></picture></a>
-          <figcaption>A redrawn overview of Sections IV-A–D and Appendix A. Homotopy acts during training; the final network produces an approximate decision in a forward pass.</figcaption>
-        </figure>
+        <div class="method-explanation">
+          <h3>Reading the graphical abstract</h3>
+          <p class="prose">In the <a href="#graphical-abstract">graphical abstract above</a>, the neural network represents the map from problem parameters to candidate power-system decisions. The central sequence of stylized optimization landscapes illustrates how homotopy gradually restores the original training problem as \(\lambda_H\) increases from 0 to 1. The grid represents the AC-OPF application and its nonlinear power-flow constraints.</p>
+          <p class="prose">The lower feedback loop closes the training process: evaluate the objective and constraint penalties on the predictions, then differentiate this loss to update the network weights. The abstract groups loads and network data as problem information; the reported AC-OPF experiments vary load profiles on a fixed network. Moving points and grid states are explanatory illustrations, not measured training trajectories.</p>
+          <h3>The overall algorithm</h3>
+          <ol class="algorithm-steps">
+            <li><strong>Predict from sampled loads.</strong> Sample active and reactive load profiles \(\xi\). The neural policy \(x=\pi_\Theta(\xi)\) predicts bus voltages \(V\), active generation \(P_g\), and reactive generation \(Q_g\), without solver-generated optimal labels.</li>
+            <li><strong>Train at the current homotopy stage.</strong> Choose the transformations and hold \(\lambda_H\) fixed while minimizing the current objective and equality/inequality penalties through automatic differentiation. The AC-OPF generation pull-up penalty remains active and unchanged.</li>
+            <li><strong>Advance and reuse the weights.</strong> Increase \(\lambda_H\) toward 1, carry the learned weights into the next stage, and train again. Depending on the selected transformation, this restores the original loads or admittance matrix, tightens relaxed bounds or equality tolerances, or increases penalty strength.</li>
+            <li><strong>Use the trained solution map.</strong> After training at \(\lambda_H=1\), keep the network weights fixed. A forward pass predicts an approximate dispatch for a new load profile. Homotopy guides offline training; it does not provide an exact feasibility or optimality certificate for the prediction.</li>
+          </ol>
+        </div>
         <div class="equation-card loss-card">
           <div class="math">\[\mathcal L_{\lambda_H}(\Theta)=f_{\lambda_H}(x,\xi)+\sum_i w_i p_i\!\left(h_{\lambda_H,i}(x,\xi)\right)+\sum_i w_i p_i\!\left(g_{\lambda_H,i}(x,\xi)\right),\qquad x=\pi_\Theta(\xi)\]</div>
           <p>Objective plus penalties for equality and inequality violations. The AC-OPF experiments add a generation pull-up penalty throughout the schedule. <a href="https://arxiv.org/html/2511.11677v1#S4.E5">Eq. (5)</a> and <a href="https://arxiv.org/html/2511.11677v1#A1">Appendix A</a>.</p>
