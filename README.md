@@ -8,7 +8,7 @@ Dedicated SOLARIS research project website for **Homotopy-Guided Self-Supervised
 - [arXiv manuscript, version 1](https://arxiv.org/abs/2511.11677v1)
 - DOI: [10.1109/PESGM58988.2026.11693405](https://doi.org/10.1109/PESGM58988.2026.11693405)
 
-Published in the **2026 IEEE Power & Energy Society General Meeting (PESGM)**. The scientific exposition and reported experiment values on this page use arXiv v1, including its appendix; bibliographic status is checked against IEEE. This repository contains the website, not the research implementation.
+Published in the **2026 IEEE Power & Energy Society General Meeting (PESGM)**. The scientific exposition and reported experiment values on this page were checked against the published IEEE paper, including Appendix A. The matching arXiv v1 manuscript provides openly accessible section links. This repository contains the website, not the research implementation.
 
 ## Local preview
 
@@ -39,7 +39,7 @@ node scripts/validate.mjs
 - `.github/workflows/pages.yml`: validates pull requests and deploys successful pushes to `main` using GitHub Pages.
 - `LICENSE` and `NOTICE`: code license and template/asset attribution.
 
-The repository also contains an internal source map and asset provenance record. Consult them before changing scientific claims, numerical results, equations, figures, or bibliographic metadata. Keep explanatory animations clearly distinguished from measured experiments. Preserve baselines, units, and the meaning of standard deviations when editing result tables. Recheck source-version differences before replacing manuscript-derived content with the final publication.
+The repository also contains an internal source map and asset provenance record. Consult them before changing scientific claims, numerical results, equations, figures, or bibliographic metadata. Keep explanatory animations clearly distinguished from measured experiments. Preserve baselines, units, and the meaning of standard deviations when editing result tables. The published-version audit is recorded in `docs/SOURCE_MAP.md`. The opening animation reuses the SOLARIS papers page revision 13 artwork and AC-OPF updater; playback controls and reduced-motion handling are in `main.js`.
 
 When editing, validate the source, inspect a local desktop and mobile preview, check keyboard operation and reduced-motion behavior, then commit to `main`. The build stages `index.html`, `style.css`, `main.js`, `assets/`, and attribution/citation files if present. Research notes, scripts, and other internal material are not included in the deployed artifact.
 

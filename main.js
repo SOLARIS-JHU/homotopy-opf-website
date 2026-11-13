@@ -26,49 +26,56 @@ copyButton.addEventListener('click', async () => {
   }
 });
 
-// This changes the scheduled equality tolerance in Eq. (9), not a simulated
-// neural-network residual. No measured optimization trajectory is synthesized.
-const slider = document.querySelector('#lambda');
-const play = document.querySelector('#play');
+// Reuse the approved SOLARIS v13 AC-OPF artwork and its original updater.
+// This is an explanatory animation, separate from the reported experiments.
+const abstractObject = document.querySelector('#solaris-abstract');
+const abstractPlay = document.querySelector('#abstract-play');
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-let timer = null;
-document.querySelector('.schedule-controls').hidden = false;
-function updateSchedule() {
-  const lambda = Number(slider.value) / 20;
-  const halfWidth = 330 * (1 - lambda);
-  const band = document.querySelector('#tolerance-band');
-  band.setAttribute('x', String(560 - halfWidth));
-  band.setAttribute('width', String(halfWidth * 2));
-  for (const [selector, x] of [['#band-left',560-halfWidth],['#band-right',560+halfWidth]]) {
-    const line = document.querySelector(selector);
-    line.setAttribute('x1', String(x)); line.setAttribute('x2', String(x));
+let abstractSvg, animationTime = 2, previousFrame = null, lastPaint = 0;
+let animationPaused = reducedMotion.matches, abstractVisible = false;
+
+function syncAnimationControl() {
+  abstractPlay.textContent = animationPaused ? 'Play animation' : 'Pause animation';
+  abstractPlay.setAttribute('aria-pressed', String(!animationPaused));
+}
+function initializeAbstract() {
+  const svg = abstractObject.contentDocument?.querySelector('svg');
+  if (!svg || svg === abstractSvg) return;
+  abstractSvg = svg;
+  window.renderSolarisAcopf(abstractSvg, animationTime);
+  document.querySelector('.abstract-controls').hidden = false;
+  syncAnimationControl();
+}
+abstractObject.addEventListener('load', initializeAbstract);
+initializeAbstract();
+new IntersectionObserver(entries => {
+  abstractVisible = entries.some(entry => entry.isIntersecting);
+  previousFrame = null;
+}, {threshold: 0.05}).observe(abstractObject);
+function animateAbstract(now) {
+  const dt = previousFrame === null ? 0 : Math.min((now - previousFrame) / 1000, 0.1);
+  previousFrame = now;
+  if (abstractSvg && !animationPaused && abstractVisible && !document.hidden) {
+    animationTime += dt;
+    if (now - lastPaint >= 33) {
+      window.renderSolarisAcopf(abstractSvg, animationTime);
+      lastPaint = now;
+    }
   }
-  document.querySelector('#lambda-value').value = lambda.toFixed(2);
-  document.querySelector('#epsilon-value').value = (0.01 * (1 - lambda)).toFixed(4);
-  slider.setAttribute('aria-valuetext', `Lambda ${lambda.toFixed(2)}; tolerance plus or minus ${(0.01*(1-lambda)).toFixed(4)}`);
-  document.querySelector('#tolerance-desc').textContent = `At lambda ${lambda.toFixed(2)}, the scheduled equality tolerance is plus or minus ${(0.01*(1-lambda)).toFixed(4)}. This is an illustration, not measured training data.`;
+  requestAnimationFrame(animateAbstract);
 }
-function stopSchedule() {
-  if (timer !== null) clearInterval(timer);
-  timer = null;
-  play.textContent = reducedMotion.matches ? 'Advance one step' : 'Play schedule';
-  play.setAttribute('aria-pressed', 'false');
-}
-function advanceSchedule() {
-  slider.value = String(Number(slider.value) >= 20 ? 0 : Number(slider.value) + 1);
-  updateSchedule();
-}
-slider.addEventListener('input', () => {stopSchedule(); updateSchedule();});
-play.addEventListener('click', () => {
-  if (reducedMotion.matches) {advanceSchedule(); return;}
-  if (timer !== null) {stopSchedule(); return;}
-  if (Number(slider.value) === 20) {slider.value = '0'; updateSchedule();}
-  play.textContent = 'Pause schedule'; play.setAttribute('aria-pressed','true');
-  timer = setInterval(() => {
-    advanceSchedule();
-    if (Number(slider.value) === 20) stopSchedule();
-  }, 650);
+requestAnimationFrame(animateAbstract);
+abstractPlay.addEventListener('click', () => {
+  animationPaused = !animationPaused;
+  previousFrame = null;
+  syncAnimationControl();
 });
-reducedMotion.addEventListener('change', stopSchedule);
-document.addEventListener('visibilitychange', () => {if (document.hidden) stopSchedule();});
-stopSchedule(); updateSchedule();
+document.querySelector('#abstract-restart').addEventListener('click', () => {
+  animationTime = 0;
+  if (abstractSvg) window.renderSolarisAcopf(abstractSvg, animationTime);
+});
+reducedMotion.addEventListener('change', event => {
+  if (event.matches) animationPaused = true;
+  syncAnimationControl();
+});
+document.addEventListener('visibilitychange', () => { previousFrame = null; });

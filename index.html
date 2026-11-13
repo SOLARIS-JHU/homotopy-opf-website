@@ -32,6 +32,7 @@
   <link rel="stylesheet" href="assets/vendor/katex/katex.min.css">
   <script defer src="assets/vendor/katex/katex.min.js"></script>
   <script defer src="assets/vendor/katex/auto-render.min.js"></script>
+  <script defer src="assets/solaris-acopf-animation.js"></script>
   <script defer src="main.js"></script>
 </head>
 <body>
@@ -57,9 +58,15 @@
           <div class="buttons centered">
             <a class="btn btn-primary" href="https://ieeexplore.ieee.org/document/11693405/">Paper <span aria-hidden="true">↗</span></a>
             <a class="btn" href="https://arxiv.org/abs/2511.11677">arXiv <span aria-hidden="true">↗</span></a>
-            <a class="btn" href="https://arxiv.org/pdf/2511.11677v1">Open PDF <span aria-hidden="true">↗</span></a>
             <a class="btn" href="#citation">BibTeX</a>
           </div>
+        <div class="logos" aria-label="Research organizations">
+          <a href="https://www.buffalo.edu/"><img class="buffalo-logo" src="assets/logos/buffalo.svg" alt="University at Buffalo" width="360" height="266"></a>
+          <a href="https://www.cmu.edu/"><img class="cmu-logo" src="assets/logos/cmu-wordmark.svg" alt="Carnegie Mellon University" width="193" height="17"></a>
+          <a href="https://solaris-jhu.github.io/solaris-website/"><img src="assets/logos/solaris.png" alt="SOLARIS Lab" width="200" height="60"></a>
+          <a href="https://engineering.jhu.edu/"><img src="assets/logos/jhu-whiting.svg" alt="Johns Hopkins Whiting School of Engineering" width="240" height="60"></a>
+          <a href="https://www.pnnl.gov/"><img src="assets/logos/pnnl.jpg" alt="Pacific Northwest National Laboratory" width="200" height="60"></a>
+        </div>
         </header>
         <div class="hero-grid">
           <div>
@@ -68,15 +75,13 @@
             <p>This work guides self-supervised training through a sequence of easier problems, gradually restoring the original objective and constraints while carrying the learned weights forward.</p>
             <a class="text-link" href="#method">Explore the method <span aria-hidden="true">↓</span></a>
           </div>
-          <figure class="hero-art">
-            <img src="assets/paper-homotopy-path.png" width="3193" height="951" alt="Original paper illustration of a desirable homotopy path through successive basins of attraction.">
-            <figcaption>Figure 2 from the paper: a desirable continuation path. A conceptual illustration, not a measured training trajectory or a convergence guarantee.</figcaption>
+          <figure class="hero-art" aria-labelledby="abstract-caption">
+            <object id="solaris-abstract" type="image/svg+xml" data="assets/solaris-acopf.svg" width="760" height="392" aria-label="SOLARIS graphical abstract: a neural solution map learns through successive relaxed optimization problems toward full AC grid physics.">
+              <img src="assets/solaris-acopf.svg" width="760" height="392" alt="SOLARIS graphical abstract showing neural predictions, homotopy training stages, and AC grid physics.">
+            </object>
+            <div class="abstract-controls" hidden><button class="btn" id="abstract-play" type="button" aria-pressed="true">Pause animation</button><button class="btn" id="abstract-restart" type="button">Restart</button><a class="text-link" href="assets/solaris-acopf.svg">View full-size SVG ↗</a></div>
+            <figcaption id="abstract-caption">The animated graphical abstract from the <a href="https://solaris-jhu.github.io/solaris-website/papers.html">SOLARIS papers page</a>. Motion illustrates continuation through learning problems and changing grid states; it does not reproduce reported experimental results.</figcaption>
           </figure>
-        </div>
-        <div class="logos" aria-label="Research organizations">
-          <a href="https://solaris-jhu.github.io/solaris-website/"><img src="assets/logos/solaris.png" alt="SOLARIS Lab" width="200" height="60"></a>
-          <a href="https://engineering.jhu.edu/"><img src="assets/logos/jhu-whiting.svg" alt="Johns Hopkins Whiting School of Engineering" width="240" height="60"></a>
-          <a href="https://www.pnnl.gov/"><img src="assets/logos/pnnl.jpg" alt="Pacific Northwest National Laboratory" width="200" height="60"></a>
         </div>
       </div>
     </section>
@@ -91,7 +96,7 @@
           <article class="card"><span class="num">2</span><h3>A sequence of problems</h3><p>Train at a fixed homotopy parameter, advance it, and reuse the previous network weights.</p></article>
           <article class="card"><span class="num">3</span><h3>Empirical validation</h3><p>Compare residuals on case30 and synthetic nonconvex problems. Benefits depend on the chosen transformation.</p></article>
         </div>
-        <p class="source-note">Scientific content and reported results follow <a href="https://arxiv.org/abs/2511.11677v1">arXiv v1, 11 November 2025</a>. Publication metadata follows the IEEE record.</p>
+        <p class="source-note">Scientific content and reported results follow the <a href="https://doi.org/10.1109/PESGM58988.2026.11693405">published IEEE PESGM 2026 paper</a>. The <a href="https://arxiv.org/abs/2511.11677v1">arXiv version</a> provides an openly accessible manuscript.</p>
       </div>
     </section>
 
@@ -128,29 +133,6 @@
           <article><h3>Type II · Use power-system structure</h3><p><strong>Load stepping</strong> scales loads from zero toward their target values in the power-balance equations.</p><p><strong>Transmission (Tx) stepping</strong> interpolates the admittance matrix from nearly shorted lines to the original network:</p><div class="math">\[Y_{\lambda_H}=(1-\lambda_H)Y_0+\lambda_HY_{\mathrm{bus}}.\]</div><p>These transformations can be paired with Type I relaxations. They guide training without certifying the feasibility of the entire path.</p></article>
         </div>
         <aside class="note"><strong>An important AC-OPF detail.</strong> Every AC-OPF experiment also penalizes violations of \(\sum_gP_g-\sum_dP_d\ge\epsilon\), with \(\epsilon=0.01\). This generation pull-up condition stays unchanged along the schedule. It is a soft training penalty, not a projection of the output.</aside>
-
-        <div class="schedule card" aria-labelledby="schedule-title">
-          <div class="schedule-heading"><div><p class="eyebrow">Interactive explanation</p><h3 id="schedule-title">Watch an equality tolerance shrink</h3></div><span class="illustration-label">Eq. (9) · illustration</span></div>
-          <p>Split and Shrink trains with \(-\epsilon_{\lambda_H}\le h(x,\xi)\le\epsilon_{\lambda_H}\). The AC-OPF settings use \(\epsilon_H=0.01\) and \(\epsilon_L=0\).</p>
-          <div class="math">\[\epsilon_{\lambda_H}=(1-\lambda_H)\,0.01+\lambda_H\,0\]</div>
-          <svg class="tolerance-plot" viewBox="0 0 940 210" role="img" aria-labelledby="tolerance-title tolerance-desc">
-            <title id="tolerance-title">Equality tolerance band</title><desc id="tolerance-desc">At lambda zero the illustrative residual tolerance spans minus 0.01 to plus 0.01. The band shrinks to zero as lambda reaches one.</desc>
-            <text x="30" y="38" class="svg-label">Constraint residual h(x, ξ)</text>
-            <rect id="tolerance-band" x="230" y="77" width="660" height="64" rx="6" fill="#68ace5" fill-opacity="0.25"/>
-            <line x1="230" y1="109" x2="890" y2="109" stroke="#5b6470" stroke-width="1.5"/>
-            <g stroke="#5b6470"><path d="M230 102v14 M395 102v14 M560 98v22 M725 102v14 M890 102v14"/></g>
-            <g class="svg-tick" text-anchor="middle"><text x="230" y="166">−0.01</text><text x="395" y="166">−0.005</text><text x="560" y="166">0</text><text x="725" y="166">0.005</text><text x="890" y="166">0.01</text></g>
-            <line id="band-left" x1="230" y1="75" x2="230" y2="143" stroke="#002d72" stroke-width="3"/><line id="band-right" x1="890" y1="75" x2="890" y2="143" stroke="#002d72" stroke-width="3"/>
-            <text x="30" y="113" class="svg-label">Training tolerance</text>
-          </svg>
-          <div class="schedule-controls" hidden>
-            <button class="btn" id="play" type="button" aria-pressed="false">Play schedule</button>
-            <div class="slider-group"><label for="lambda"><span>Homotopy parameter λ<sub>H</sub></span> <output id="lambda-value" for="lambda">0.00</output></label><input id="lambda" type="range" min="0" max="20" value="0" step="1" aria-describedby="schedule-note"></div>
-            <p class="epsilon-readout">Tolerance ±<output id="epsilon-value">0.0100</output></p>
-          </div>
-          <p class="source-note" id="schedule-note">Each step advances λ<sub>H</sub> by 0.05. The illustration shows the scheduled tolerance only; it does not simulate training or display measured residuals. A zero target tolerance does not imply a zero achieved residual.</p>
-          <noscript><p>The static illustration shows λ<sub>H</sub> = 0. At λ<sub>H</sub> = 1, the target band has width zero.</p></noscript>
-        </div>
         <details class="paper-figure"><summary>Original paper diagram: supervised and self-supervised learning</summary><figure class="figure"><img src="assets/paper-l2o.png" alt="Paper Figure 1 compares supervised training against solver-generated optimal labels with self-supervised training using objective and constraint evaluations." loading="lazy"><figcaption>Original Figure 1. The method on this page uses the self-supervised route.</figcaption></figure></details>
       </div>
     </section>
@@ -185,7 +167,7 @@
     </section>
 
     <section class="alt" id="resources" aria-labelledby="resources-title">
-      <div class="wrap"><p class="eyebrow">Read and cite</p><h2 id="resources-title">Resources</h2><div class="buttons"><a class="btn btn-primary" href="https://doi.org/10.1109/PESGM58988.2026.11693405">IEEE publication ↗</a><a class="btn" href="https://arxiv.org/html/2511.11677v1">Full manuscript ↗</a><a class="btn" href="https://arxiv.org/pdf/2511.11677v1">Open PDF ↗</a><a class="btn" href="citation.bib" download>Download BibTeX</a></div><p class="resource-note">Published in the 2026 IEEE Power &amp; Energy Society General Meeting (PESGM), Montréal, Canada. No paper-specific public code or data release was identified in the verified author resources.</p>
+      <div class="wrap"><p class="eyebrow">Read and cite</p><h2 id="resources-title">Resources</h2><div class="buttons"><a class="btn btn-primary" href="https://doi.org/10.1109/PESGM58988.2026.11693405">IEEE publication ↗</a><a class="btn" href="https://arxiv.org/html/2511.11677v1">Full manuscript ↗</a><a class="btn" href="citation.bib" download>Download BibTeX</a></div><p class="resource-note">Published in the 2026 IEEE Power &amp; Energy Society General Meeting (PESGM), Montréal, Canada. No paper-specific public code or data release was identified in the verified author resources.</p>
         <h3 id="citation">Citation</h3>
         <div class="bibtex-box"><div class="bibtex-toolbar"><span>IEEE PESGM 2026</span><button id="copy-bibtex" class="btn" type="button" hidden>Copy BibTeX</button></div><pre><code id="bibtex">@inproceedings{li2026homotopy,
   title = {Homotopy-Guided Self-Supervised Learning of Parametric
@@ -197,7 +179,7 @@
   doi = {10.1109/PESGM58988.2026.11693405},
   url = {https://ieeexplore.ieee.org/document/11693405/}
 }</code></pre><p id="copy-status" class="source-note" role="status" aria-live="polite"></p></div>
-        <p class="source-note">The publisher’s bibliographic record was verified; the scientific presentation follows the openly available arXiv v1 manuscript, including Appendix A. The publisher full text was not available for a version-to-version comparison.</p>
+        <p class="source-note">The scientific presentation, equations, results, and training settings were checked against the published IEEE PESGM 2026 paper, including Appendix A. Links to the arXiv manuscript provide open access to the corresponding sections.</p>
       </div>
     </section>
   </main>

@@ -86,7 +86,7 @@ if (exists('index.html')) {
     const a = attrs(tag);
     if (/^<img\b/i.test(tag) && !Object.hasOwn(a, 'alt')) fail(`Image has no alt attribute: ${a.src ?? tag}`);
     if (a.target === '_blank' && !/noopener/.test(a.rel || '')) fail(`External tab link needs rel=noopener: ${a.href}`);
-    for (const key of ['src','href','poster']) if (a[key]) reference(a[key], 'index.html', ids);
+    for (const key of ['src','href','poster','data']) if (a[key]) reference(a[key], 'index.html', ids);
     if (a.srcset && !a.srcset.startsWith('data:')) for (const item of a.srcset.split(',')) reference(item.trim().split(/\s+/)[0], 'index.html', ids);
   }
   for (const match of html.matchAll(/<script\b[^>]*type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/gi)) {

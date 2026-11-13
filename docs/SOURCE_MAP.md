@@ -4,9 +4,10 @@ Last checked: 2026-11-13. This is an internal maintenance record. It is delibera
 
 ## Primary sources and version policy
 
-- **Scientific source:** [arXiv:2511.11677v1](https://arxiv.org/abs/2511.11677v1), submitted 11 November 2025. The full five-page [PDF](https://arxiv.org/pdf/2511.11677v1) and [HTML](https://arxiv.org/html/2511.11677v1) were read, including Appendix A.
+- **Primary scientific source:** The user-provided published five-page IEEE PESGM 2026 paper, *Homotopy-Guided Self-Supervised Learning of Parametric Solutions for AC Optimal Power Flow*, DOI 10.1109/PESGM58988.2026.11693405. Read in full, including Appendix A on pages 4-5, on 2026-11-13.
+- **Open companion:** [arXiv:2511.11677v1](https://arxiv.org/abs/2511.11677v1), submitted 11 November 2025. Its [PDF](https://arxiv.org/pdf/2511.11677v1) and [HTML](https://arxiv.org/html/2511.11677v1) provide public links to the corresponding sections.
 - **Publication metadata:** [IEEE Xplore document 11693405](https://ieeexplore.ieee.org/document/11693405/), DOI [10.1109/PESGM58988.2026.11693405](https://doi.org/10.1109/PESGM58988.2026.11693405). The rendered publisher record was read in the browser. It identifies the 2026 IEEE Power & Energy Society General Meeting (PESGM), 19-23 July 2026, Montreal, QC, Canada; added to IEEE Xplore 24 September 2026.
-- Publisher full text required a subscription and was inaccessible. No claim is made that arXiv v1 and the final proceedings paper are identical. The public page explicitly follows arXiv v1 scientifically.
+- Published-version audit: the supplied IEEE PDF confirms the current title, author order, affiliation mapping, Eqs. (1)-(12), all displayed Table I values, selected n=100 Table II results, and training settings. No substantive change to these website claims was required. Scientific content now follows the published version; the previous publisher-full-text access limitation is resolved by the supplied PDF.
 - arXiv still says submitted, and the first author's publication page says forthcoming. Those status labels are stale relative to the verified IEEE record. The website uses published conference status and 2026 citation metadata.
 - The publisher abstract qualifies the absence of external solvers as **during training**. Do not generalize that statement to all evaluation or possible implementations.
 - The earlier OpenReview manuscript, *Homotopy Learning of Parametric Solutions to Constrained Optimization Problems*, is related historical work. Do not silently import its results, authorship order or assets.
@@ -23,7 +24,7 @@ Exact title: **Homotopy-Guided Self-Supervised Learning of Parametric Solutions 
 | 4 | Larry Pileggi | Carnegie Mellon University | https://ece.cmu.edu/directory/bios/pileggi-larry.html |
 | 5 | Jan Drgona | Johns Hopkins University | https://drgona.github.io/ |
 
-The arXiv title block uses unaccented Jan Drgona. JHU's official profile supports the accented spelling (LaTeX: J\'an Drgo\v{n}a). Affiliation superscripts are Li 1; Tuor 2; Vrabie 2; Pileggi 3; Drgona 4. The PDF has institution-name typos (Pacific Northwestern National Lab and John Hopkins University); the website uses correct institutional names.
+Both the published and arXiv title blocks use unaccented Jan Drgona. JHU's official profile supports the accented spelling (LaTeX: J\'an Drgo\v{n}a). Affiliation superscripts are Li 1; Tuor 2; Vrabie 2; Pileggi 3; Drgona 4. The PDF has institution-name typos (Pacific Northwestern National Lab and John Hopkins University); the website uses correct institutional names.
 
 Supporting official sources: https://energyinstitute.jhu.edu/people/jan-drgona/ (paper and DOI), https://www.shimiaoli.com/publications.html (conference), https://www.shimiaoli.com/ and https://drgona.github.io/news/ (acceptance announcements). Citation omits page numbers not independently verified from the publisher. This is a conference publication, not a journal article. `citation.bib`, visible BibTeX, citation meta tags and JSON-LD must agree.
 
@@ -42,7 +43,6 @@ Supporting official sources: https://energyinstitute.jhu.edu/people/jan-drgona/ 
 | CObj, SBnds, GPen, SaS descriptions | Section IV-C, Eqs. (6)-(9) | GPen changes penalty strength, not the exact feasible set for positive lambda_H |
 | Load stepping and Tx stepping | Section IV-D, Eqs. (10)-(11) | No certified feasible initial full problem or continuation path |
 | Generation pull-up note and diagram block | Appendix A | Sum(P_g)-Sum(P_d) >= epsilon; epsilon=0.01; soft penalty unchanged along schedule |
-| Interactive equality band | Eq. (9) and AC-OPF Appendix A settings | Scheduled tolerance only; not simulated or measured residuals |
 | All six case30 configurations improve reported mean/max equality residuals | Section V-A, Table I | 100 test instances; averages of per-instance metrics, no feasibility percentage |
 | Full case30 table and chart | Table I, PDF page 4; Section V for $/h | Preserve printed values and standard deviations; residual units unspecified |
 | Dataset, architecture, batch size, weights and schedules | Appendix A | No reported hardware, runtime or matched-compute comparison |
@@ -127,10 +127,9 @@ Appendix A AC-OPF settings:
 | Repository item | Source / derivation | Maintenance restriction |
 |---|---|---|
 | `assets/paper-l2o.png` | Original paper Figure 1 from arXiv HTML | Preserve diagram content and caption |
-| `assets/paper-homotopy-path.png` | Original paper Figure 2 from arXiv HTML | Desirable conceptual path, not measured trajectory or guarantee |
+| `assets/solaris-acopf.svg` and `assets/solaris-acopf-animation.js` | Existing SOLARIS papers-page revision 13 AC-OPF graphical abstract and original updater | Explanatory motion, not measured experimental results; pause/restart, static fallback and reduced-motion support |
 | `assets/method-overview.svg` | Website redraw of Sections IV-A-D and Appendix A, generated by `scripts/generate_figures.py` | Preserve inputs, predictions, parameter dependency, loss, AD feedback, unchanged pull-up penalty and training/inference distinction |
 | `assets/case30-residuals.svg` | Table I -> `data/case30.json` -> `scripts/generate_results.py` | Preserve all seven configurations, uncertainty meaning and units caveat |
-| Equality-band SVG/controls in `index.html` and `main.js` | Eq. (9), AC-OPF Appendix A settings | Illustrative tolerance only; maintain static state and reduced-motion support |
 | `assets/social-preview.png` | Website-generated project preview | Explanatory visual, not experimental evidence |
 
 Institutional logo and template sources are recorded separately in the asset provenance documentation. Design references establish appearance, not scientific claims about this paper.
@@ -141,7 +140,7 @@ Institutional logo and template sources are recorded separately in the asset pro
 2. No theorem or certificate establishes exact feasibility, global optimality or convergence. A soft penalty or zero tolerance target is not a guarantee.
 3. Eq. (1) does not include thermal line-flow limits despite broad introduction text mentioning transmission limits. Do not insert those into the studied formulation without additional evidence.
 4. Eq. (10)'s zero-voltage/zero-generation intuition is not a full-constraint guarantee: it need not satisfy positive voltage bounds or the unchanged pull-up margin. Describe load stepping as easing power-balance learning, with other relaxations available.
-5. GPen changes the training loss, not the exact feasible set for positive lambda_H. The interactive display uses SaS, whose residual band actually changes.
+5. GPen changes the training loss, not the exact feasible set for positive lambda_H. The removed equality-tolerance demonstration must not be confused with the reused SOLARIS graphical abstract.
 6. The textual equality-metric formula lacks an absolute value. Without code verification, retain the reported metric label rather than asserting a different precise residual definition.
 7. Table II contains adverse configurations, including SaS+GPen at n=100; benefits depend on transformation choice.
 8. No physical-grid deployment or energy-saving result is presented; generalization beyond the sampled loads is not established.

@@ -14,3 +14,7 @@ and laboratory logos, and other third-party assets retain their original
 copyright and trademark rights. See the repository's asset provenance
 record for the source of each asset. Inclusion does not relicense these
 assets or imply institutional endorsement.
+
+The opening graphical abstract and AC-OPF animation updater are reused from
+SOLARIS-JHU/solaris-website, revision 13. The artwork and original updater
+are unchanged; site-specific playback controls are new. See ASSET_PROVENANCE.

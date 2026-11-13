@@ -38,6 +38,24 @@ Fraunces and Inter Latin variable WOFF2 files are hosted in assets/fonts, with e
 
 KaTeX 0.16.22 is vendored from https://cdn.jsdelivr.net/npm/katex@0.16.22/ (dist/katex.min.js, dist/contrib/auto-render.min.js, dist/katex.min.css, dist/fonts/*.woff2). Its MIT LICENSE is retained in assets/vendor/katex/LICENSE. CSS font source lists were reduced to WOFF2; font bytes and JavaScript are otherwise unchanged. Page assets do not require a runtime CDN connection.
 
-Original arXiv images: assets/paper-l2o.png from https://arxiv.org/html/2511.11677v1/figures/L2Ofig.png (Figure 1); assets/paper-homotopy-path.png from https://arxiv.org/html/2511.11677v1/figures/homo_path.png (Figure 2). Unmodified author figures, reproduced on this author-requested project site; retain original rights.
+Original arXiv image: assets/paper-l2o.png from https://arxiv.org/html/2511.11677v1/figures/L2Ofig.png (Figure 1). Unmodified author figure, reproduced on this author-requested project site; retains original rights. Paper Figure 2 was removed at the author\'s request in favor of the existing SOLARIS graphical abstract.
 
 New method overview (desktop/mobile) and social preview: scripts/generate_figures.py. Case30 error-bar plot: scripts/generate_results.py using data/case30.json, exact Table I transcription. These new explanatory/data visualizations are separately distinguishable from the original paper artwork.
+
+## SOLARIS graphical abstract, revision 13
+
+The hero reuses the exact AC-OPF artwork and animation from the [SOLARIS papers page](https://solaris-jhu.github.io/solaris-website/papers.html), retrieved 2026-11-13 from repository commit `90d8817e9b10621ef2edc189e5290c47465d2c2f`.
+
+- `assets/solaris-acopf.svg`: unchanged bytes from `static/images/papers/v13/arxiv-2511.11677.svg`; source blob `86d965975e6d1e4d7eeeb9f1c6bf9f59dfa140a4`.
+- `assets/solaris-acopf-animation.js`: the exact `v10-acopf` updater extracted from `static/js/paper-abstracts-v13.js`; source blob `ad22efa8b90b6bd40580744a7e9c1626ce8f447a`. Only the wrapper/export changed; geometry and update math did not.
+- `main.js` provides page-specific play/pause and restart controls, pauses off-screen and hidden-tab updates, and starts paused for reduced-motion preferences. The external SVG remains a static fallback without JavaScript.
+- The updater's sample arrays and trajectory motion are explanatory illustration from the SOLARIS page. They are not measured Table I/II data, physical-grid experiments, or a convergence guarantee. The caption makes this distinction explicit.
+
+This reuse is explicitly requested by the author. Original SOLARIS contributors retain their rights; no new claim of ownership is made.
+
+## Additional university marks
+
+- `assets/logos/buffalo.svg`: existing Adobe Illustrator vector copy of the blue UB interlocking monogram with stacked university-name lockup (360 x 266 viewBox), retrieved unchanged from [KNITPhoenix/knitphoenix.github.io](https://github.com/KNITPhoenix/knitphoenix.github.io/blob/d7766b321d5051702189ddd7582ab1a54c871cda/assets/logos/University_at_Buffalo_logo.svg), blob `b7c903e0711cfdda1f5845a436a7f5d9faf390f0`. Official identity reference: https://www.buffalo.edu/brand/identity/university-logo-and-marks.html (stacked University Lockup).
+- `assets/logos/cmu-wordmark.svg`: existing red horizontal university wordmark, converted from `cmu-wordmark-horizontal-r.eps`, retrieved unchanged from [cmudco/dare-backend](https://github.com/cmudco/dare-backend/blob/3fb4dd2dbc0e6f6216998d69fd71dda07dc875c7/cmu-quiver/shared/assets/cmu-wordmark.svg), blob `b27c1c02cb57158deb70d800e4a007b59277b87a`. Official identity reference: https://brand.cmu.edu/visual-identity/carnegie-mellon-trademarks/wordmarks.
+
+These are existing vector marks, not recreated text or generated logos. Their copied-file sources are recorded separately from the official identity references; the university download portals were not used. Preserve their proportions. The surrounding page applies the established SOLARIS grayscale treatment with original color on hover or keyboard focus. Trademark rights remain with the universities.
