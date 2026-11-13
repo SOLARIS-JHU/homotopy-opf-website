@@ -44,3 +44,13 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+
+  verify:
+    if: github.event_name != 'pull_request'
+    needs: deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out deployed revision
+        uses: actions/checkout@v6
+      - name: Verify the published page and assets
+        run: node scripts/verify-live.mjs
