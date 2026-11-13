@@ -1,0 +1,16 @@
+Homotopy-Guided AC Optimal Power Flow project website
+
+The website's typography, design tokens, and layout foundation are adapted
+from the TQPNet website by the SOLARIS-JHU/TQPNet contributors:
+https://github.com/SOLARIS-JHU/TQPNet/tree/main/website
+
+TQPNet is distributed under the Apache License, Version 2.0. A copy is
+included in LICENSE. This website changes the research content, diagrams,
+interactions, page structure, and responsive styling for the homotopy OPF
+paper. These modifications are not part of the upstream TQPNet project.
+
+The Apache license applies to the website code. Paper figures, institution
+and laboratory logos, and other third-party assets retain their original
+copyright and trademark rights. See the repository's asset provenance
+record for the source of each asset. Inclusion does not relicense these
+assets or imply institutional endorsement.

@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 650" width="1100" height="650" role="img" aria-labelledby="title desc">
+<title id="title">Homotopy-guided self-supervised learning for AC optimal power flow</title><desc id="desc">Offline training maps sampled load profiles through a neural policy to predicted voltages and generator powers. A homotopy schedule changes the objective and constraint penalties from an easier problem to the original problem. Automatic differentiation updates the neural policy. The generation pull-up penalty stays fixed along the homotopy. At inference, new loads pass through the trained policy with fixed weights to produce approximate decisions; no feasibility guarantee is implied.</desc>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#002d72"/></marker></defs>
+<rect x="0.5" y="0.5" width="1099" height="649" rx="14" fill="#fbfbfd" stroke="#dfe3ea"/>
+<text x="40" y="43" font-family="Georgia, serif" font-size="30" font-weight="600" fill="#002d72" text-anchor="start">Learn the solution map, gradually</text>
+<text x="40" y="73" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="400" fill="#5b6470" text-anchor="start">Homotopy changes the training problem; the neural policy learns across stages.</text>
+<rect x="24" y="96" width="1052" height="405" rx="14" fill="white" stroke="#dfe3ea"/>
+<text x="48" y="126" font-family="Inter, Arial, sans-serif" font-size="14" font-weight="600" fill="#002d72" text-anchor="start">OFFLINE TRAINING</text>
+<rect x="48" y="146" width="1004" height="77" rx="10" fill="#f0f5fb" stroke="#e3ebf5"/>
+<text x="70" y="176" font-family="Inter, Arial, sans-serif" font-size="17" font-weight="600" fill="#002d72" text-anchor="start">Easier problem</text>
+<text x="1030" y="176" font-family="Inter, Arial, sans-serif" font-size="17" font-weight="600" fill="#002d72" text-anchor="end">Original problem</text>
+<path d="M 244 170 H 852" fill="none" stroke="#002d72" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<text x="550" y="162" font-family="Inter, Arial, sans-serif" font-size="19" font-weight="500" fill="#002d72" text-anchor="middle">λ<tspan font-size="70%" baseline-shift="sub">H</tspan> = 0    →    …    →    1</text>
+<text x="550" y="205" font-family="Inter, Arial, sans-serif" font-size="17" font-weight="400" fill="#5b6470" text-anchor="middle">Train at fixed λ<tspan font-size="70%" baseline-shift="sub">H</tspan>  ·  carry Θ forward  ·  increase λ<tspan font-size="70%" baseline-shift="sub">H</tspan></text>
+<path d="M 976 223 V 259" fill="none" stroke="#002d72" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<path d="M 138 260 V 244 H 704 V 259" fill="none" stroke="#002d72" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<text x="520" y="240" font-family="Georgia, serif" font-size="16" font-weight="400" fill="#002d72" text-anchor="middle">ξ</text>
+<rect x="48" y="260" width="180" height="116" rx="14" fill="white" stroke="#dfe3ea"/>
+<text x="138" y="290" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="600" fill="#1a1f2b" text-anchor="middle">Load profiles</text>
+<text x="138" y="325" font-family="Georgia, serif" font-size="24" font-weight="500" fill="#002d72" text-anchor="middle">ξ = (P<tspan font-size="70%" baseline-shift="sub">d</tspan>, Q<tspan font-size="70%" baseline-shift="sub">d</tspan>)</text>
+<text x="138" y="355" font-family="Inter, Arial, sans-serif" font-size="15" font-weight="400" fill="#5b6470" text-anchor="middle">sampled conditions</text>
+<path d="M 228 318 H 256" fill="none" stroke="#002d72" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="258" y="260" width="190" height="116" rx="14" fill="#f0f5fb" stroke="#c5d7ec"/>
+<text x="353" y="290" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="600" fill="#1a1f2b" text-anchor="middle">Neural policy</text>
+<text x="353" y="330" font-family="Georgia, serif" font-size="30" font-weight="500" fill="#002d72" text-anchor="middle">π<tspan font-size="70%" baseline-shift="sub">Θ</tspan>(ξ)</text>
+<text x="353" y="355" font-family="Inter, Arial, sans-serif" font-size="15" font-weight="400" fill="#5b6470" text-anchor="middle">trainable weights Θ</text>
+<path d="M 448 318 H 476" fill="none" stroke="#002d72" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="478" y="260" width="160" height="116" rx="14" fill="white" stroke="#dfe3ea"/>
+<text x="558" y="290" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="600" fill="#1a1f2b" text-anchor="middle">Predictions</text>
+<text x="558" y="330" font-family="Georgia, serif" font-size="26" font-weight="500" fill="#002d72" text-anchor="middle">V, P<tspan font-size="70%" baseline-shift="sub">g</tspan>, Q<tspan font-size="70%" baseline-shift="sub">g</tspan></text>
+<text x="558" y="355" font-family="Inter, Arial, sans-serif" font-size="15" font-weight="400" fill="#5b6470" text-anchor="middle">decision variables</text>
+<path d="M 638 318 H 666" fill="none" stroke="#002d72" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="668" y="260" width="384" height="116" rx="14" fill="#f0f5fb" stroke="#c5d7ec"/>
+<text x="860" y="290" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="600" fill="#1a1f2b" text-anchor="middle">Homotopy training loss</text>
+<text x="860" y="320" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="500" fill="#002d72" text-anchor="middle">objective + equality / inequality penalties</text>
+<text x="860" y="350" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="400" fill="#5b6470" text-anchor="middle">+ P<tspan font-size="70%" baseline-shift="sub">g</tspan> pull-up penalty (unchanged)</text>
+<path d="M 860 376 V 448 H 353 V 378" fill="none" stroke="#002d72" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<text x="606" y="429" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="500" fill="#002d72" text-anchor="middle">Automatic differentiation · update Θ</text>
+<text x="48" y="482" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="400" fill="#5b6470" text-anchor="start">No optimal-solution labels required. Penalties encourage constraint satisfaction.</text>
+<rect x="24" y="520" width="1052" height="106" rx="14" fill="#f0f5fb" stroke="#dfe7f1"/>
+<text x="48" y="548" font-family="Inter, Arial, sans-serif" font-size="14" font-weight="600" fill="#002d72" text-anchor="start">INFERENCE</text>
+<text x="48" y="583" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="500" fill="#1a1f2b" text-anchor="start">New load profile</text>
+<path d="M 210 577 H 291" fill="none" stroke="#002d72" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<text x="315" y="583" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="600" fill="#002d72" text-anchor="start">Trained policy · fixed Θ</text>
+<path d="M 560 577 H 651" fill="none" stroke="#002d72" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<text x="677" y="579" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="600" fill="#1a1f2b" text-anchor="start">Approximate AC-OPF decisions</text>
+<text x="677" y="604" font-family="Inter, Arial, sans-serif" font-size="15" font-weight="400" fill="#5b6470" text-anchor="start">Original operating problem · λ<tspan font-size="70%" baseline-shift="sub">H</tspan> = 1</text>
+</svg>

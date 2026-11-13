@@ -1,0 +1,20 @@
+{
+  "source": "https://arxiv.org/html/2511.11677v1#S5.T1",
+  "source_version": "arXiv:2511.11677v1",
+  "table": "I",
+  "system": "case30",
+  "test_instances": 100,
+  "statistics": "Constraint metrics are reported as average (standard deviation) across test instances, not repeated training seeds or confidence intervals.",
+  "objective_unit": "$/h",
+  "constraint_metric_unit": null,
+  "precision_note": "Decimal strings preserve the precision printed in Table I. Rounded zeros do not establish exact feasibility.",
+  "rows": [
+    {"method": "SaS, SBnds", "objective": "666", "mean_eq": {"mean": "0.0027", "std": "0.0015"}, "max_eq": {"mean": "0.010", "std": "0.005"}, "mean_ineq": {"mean": "0.0000", "std": "0.0000"}, "max_ineq": {"mean": "0.000", "std": "0.001"}},
+    {"method": "SaS, GPen", "objective": "666", "mean_eq": {"mean": "0.0023", "std": "0.0014"}, "max_eq": {"mean": "0.008", "std": "0.005"}, "mean_ineq": {"mean": "0.0000", "std": "0.0000"}, "max_ineq": {"mean": "0.000", "std": "0.000"}},
+    {"method": "Tx-stepping, SBnds", "objective": "665", "mean_eq": {"mean": "0.0024", "std": "0.0013"}, "max_eq": {"mean": "0.008", "std": "0.005"}, "mean_ineq": {"mean": "0.0000", "std": "0.0000"}, "max_ineq": {"mean": "0.000", "std": "0.000"}},
+    {"method": "Tx-stepping, GPen", "objective": "665", "mean_eq": {"mean": "0.0017", "std": "0.0009"}, "max_eq": {"mean": "0.006", "std": "0.003"}, "mean_ineq": {"mean": "0.0000", "std": "0.0000"}, "max_ineq": {"mean": "0.000", "std": "0.000"}},
+    {"method": "Load-stepping, SBnds", "objective": "666", "mean_eq": {"mean": "0.0020", "std": "0.0012"}, "max_eq": {"mean": "0.007", "std": "0.004"}, "mean_ineq": {"mean": "0.0000", "std": "0.0000"}, "max_ineq": {"mean": "0.000", "std": "0.000"}},
+    {"method": "Load-stepping, GPen", "objective": "667", "mean_eq": {"mean": "0.0024", "std": "0.0016"}, "max_eq": {"mean": "0.009", "std": "0.005"}, "mean_ineq": {"mean": "0.0000", "std": "0.0000"}, "max_ineq": {"mean": "0.000", "std": "0.000"}},
+    {"method": "Original penalty", "objective": "673", "mean_eq": {"mean": "0.0036", "std": "0.0027"}, "max_eq": {"mean": "0.013", "std": "0.010"}, "mean_ineq": {"mean": "0.0000", "std": "0.0000"}, "max_ineq": {"mean": "0.001", "std": "0.003"}}
+  ]
+}

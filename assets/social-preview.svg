@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630" role="img" aria-labelledby="title desc">
+<title id="title">Homotopy-guided self-supervised AC optimal power flow</title><desc id="desc">Research project preview. A progression from easier training problems to the original AC optimal power flow problem guides a self-supervised neural solution map.</desc>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#002d72"/></marker></defs>
+<rect x="0.5" y="0.5" width="1199" height="629" rx="14" fill="#fbfbfd" stroke="#dfe3ea"/>
+<rect x="0" y="0" width="1200" height="10" rx="0" fill="#002d72" stroke="#002d72"/>
+<text x="64" y="69" font-family="Inter, Arial, sans-serif" font-size="20" font-weight="600" fill="#002d72" text-anchor="start">SOLARIS  /  PESGM 2026</text>
+<text x="64" y="146" font-family="Georgia, serif" font-size="49" font-weight="600" fill="#002d72" text-anchor="start">Homotopy-Guided</text>
+<text x="64" y="206" font-family="Georgia, serif" font-size="49" font-weight="600" fill="#002d72" text-anchor="start">Self-Supervised Learning</text>
+<text x="64" y="266" font-family="Georgia, serif" font-size="49" font-weight="600" fill="#002d72" text-anchor="start">for AC Optimal Power Flow</text>
+<text x="64" y="318" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="400" fill="#5b6470" text-anchor="start">Learning parametric solutions through easier training problems</text>
+<rect x="64" y="376" width="280" height="128" rx="14" fill="white" stroke="#dfe3ea"/>
+<text x="204" y="421" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="600" fill="#002d72" text-anchor="middle">Easier problem</text>
+<text x="204" y="464" font-family="Georgia, serif" font-size="30" font-weight="400" fill="#002d72" text-anchor="middle">λ<tspan font-size="70%" baseline-shift="sub">H</tspan> = 0</text>
+<path d="M 344 440 H 438" fill="none" stroke="#002d72" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="450" y="376" width="300" height="128" rx="14" fill="#eff5fc" stroke="#c5d7ec"/>
+<text x="600" y="421" font-family="Inter, Arial, sans-serif" font-size="23" font-weight="600" fill="#002d72" text-anchor="middle">Warm-start training</text>
+<text x="600" y="464" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="400" fill="#5b6470" text-anchor="middle">carry Θ forward</text>
+<path d="M 750 440 H 844" fill="none" stroke="#002d72" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="856" y="376" width="280" height="128" rx="14" fill="white" stroke="#dfe3ea"/>
+<text x="996" y="421" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="600" fill="#002d72" text-anchor="middle">Original AC-OPF</text>
+<text x="996" y="464" font-family="Georgia, serif" font-size="30" font-weight="400" fill="#002d72" text-anchor="middle">λ<tspan font-size="70%" baseline-shift="sub">H</tspan> = 1</text>
+<text x="64" y="568" font-family="Inter, Arial, sans-serif" font-size="20" font-weight="400" fill="#5b6470" text-anchor="start">Shimiao Li · Aaron Tuor · Draguna Vrabie · Larry Pileggi · Jan Drgona</text>
+</svg>

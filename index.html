@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Homotopy-Guided Learning for AC Optimal Power Flow | SOLARIS</title>
+  <meta name="description" content="Homotopy-guided self-supervised learning of parametric AC optimal power flow solutions. Method, case30 results, and paper resources. IEEE PESGM 2026.">
+  <link rel="canonical" href="https://solaris-jhu.github.io/homotopy-opf-website/">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Homotopy-Guided Learning for AC Optimal Power Flow">
+  <meta property="og:description" content="Train on a sequence of easier problems. Learn an approximate AC-OPF solution map. IEEE PESGM 2026.">
+  <meta property="og:url" content="https://solaris-jhu.github.io/homotopy-opf-website/">
+  <meta property="og:image" content="https://solaris-jhu.github.io/homotopy-opf-website/assets/social-preview.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://solaris-jhu.github.io/homotopy-opf-website/assets/social-preview.png">
+  <meta name="citation_title" content="Homotopy-Guided Self-Supervised Learning of Parametric Solutions for AC Optimal Power Flow">
+  <meta name="citation_author" content="Li, Shimiao">
+  <meta name="citation_author" content="Tuor, Aaron">
+  <meta name="citation_author" content="Vrabie, Draguna">
+  <meta name="citation_author" content="Pileggi, Larry">
+  <meta name="citation_author" content="Drgona, Jan">
+  <meta name="citation_publication_date" content="2026">
+  <meta name="citation_conference_title" content="2026 IEEE Power &amp; Energy Society General Meeting (PESGM)">
+  <meta name="citation_doi" content="10.1109/PESGM58988.2026.11693405">
+  <meta name="citation_arxiv_id" content="2511.11677">
+  <meta name="citation_pdf_url" content="https://arxiv.org/pdf/2511.11677v1">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"ScholarlyArticle","headline":"Homotopy-Guided Self-Supervised Learning of Parametric Solutions for AC Optimal Power Flow","author":[{"@type":"Person","name":"Shimiao Li"},{"@type":"Person","name":"Aaron Tuor"},{"@type":"Person","name":"Draguna Vrabie"},{"@type":"Person","name":"Larry Pileggi"},{"@type":"Person","name":"Jan Drgona"}],"datePublished":"2026","identifier":"10.1109/PESGM58988.2026.11693405","url":"https://solaris-jhu.github.io/homotopy-opf-website/","sameAs":["https://arxiv.org/abs/2511.11677","https://doi.org/10.1109/PESGM58988.2026.11693405"],"image":"https://solaris-jhu.github.io/homotopy-opf-website/assets/social-preview.png"}</script>
+  <link rel="stylesheet" href="assets/fonts/fonts.css">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="assets/vendor/katex/katex.min.css">
+  <script defer src="assets/vendor/katex/katex.min.js"></script>
+  <script defer src="assets/vendor/katex/auto-render.min.js"></script>
+  <script defer src="main.js"></script>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <nav class="site-nav wrap" aria-label="Page navigation">
+    <a class="lab-link" href="https://solaris-jhu.github.io/solaris-website/">SOLARIS <span>research</span></a>
+    <div><a href="#method">Method</a><a href="#results">Results</a><a href="#resources">Resources</a></div>
+  </nav>
+  <main id="main">
+    <section class="hero" aria-labelledby="paper-title">
+      <div class="wrap">
+        <header class="hero-head">
+          <p class="eyebrow"><span class="pill">IEEE PESGM 2026</span> Learning to optimize · Power systems</p>
+          <h1 id="paper-title">Homotopy-Guided Self-Supervised Learning of Parametric Solutions for AC Optimal Power Flow</h1>
+          <p class="authors">
+            <span><a href="https://www.shimiaoli.com/">Shimiao Li</a><sup>1</sup></span>
+            <span><a href="https://www.pnnl.gov/people/aaron-tuor">Aaron Tuor</a><sup>2</sup></span>
+            <span><a href="https://www.pnnl.gov/people/draguna-vrabie-phd">Draguna Vrabie</a><sup>2</sup></span>
+            <span><a href="https://ece.cmu.edu/directory/bios/pileggi-larry.html">Larry Pileggi</a><sup>3</sup></span>
+            <span><a href="https://drgona.github.io/">Jan Drgona</a><sup>4</sup></span>
+          </p>
+          <p class="affiliations"><span><sup>1</sup> University at Buffalo</span><span><sup>2</sup> Pacific Northwest National Laboratory</span><span><sup>3</sup> Carnegie Mellon University</span><span><sup>4</sup> Johns Hopkins University</span></p>
+          <div class="buttons centered">
+            <a class="btn btn-primary" href="https://ieeexplore.ieee.org/document/11693405/">Paper <span aria-hidden="true">↗</span></a>
+            <a class="btn" href="https://arxiv.org/abs/2511.11677">arXiv <span aria-hidden="true">↗</span></a>
+            <a class="btn" href="https://arxiv.org/pdf/2511.11677v1">Open PDF <span aria-hidden="true">↗</span></a>
+            <a class="btn" href="#citation">BibTeX</a>
+          </div>
+        </header>
+        <div class="hero-grid">
+          <div>
+            <h2>Learn the solution map.<br>Ease the training path.</h2>
+            <p class="summary">A neural network can predict power-system decisions from changing loads. Training that network directly against nonlinear power-flow constraints can be difficult.</p>
+            <p>This work guides self-supervised training through a sequence of easier problems, gradually restoring the original objective and constraints while carrying the learned weights forward.</p>
+            <a class="text-link" href="#method">Explore the method <span aria-hidden="true">↓</span></a>
+          </div>
+          <figure class="hero-art">
+            <img src="assets/paper-homotopy-path.png" width="3193" height="951" alt="Original paper illustration of a desirable homotopy path through successive basins of attraction.">
+            <figcaption>Figure 2 from the paper: a desirable continuation path. A conceptual illustration, not a measured training trajectory or a convergence guarantee.</figcaption>
+          </figure>
+        </div>
+        <div class="logos" aria-label="Research organizations">
+          <a href="https://solaris-jhu.github.io/solaris-website/"><img src="assets/logos/solaris.png" alt="SOLARIS Lab" width="200" height="60"></a>
+          <a href="https://engineering.jhu.edu/"><img src="assets/logos/jhu-whiting.svg" alt="Johns Hopkins Whiting School of Engineering" width="240" height="60"></a>
+          <a href="https://www.pnnl.gov/"><img src="assets/logos/pnnl.jpg" alt="Pacific Northwest National Laboratory" width="200" height="60"></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="intro-section" id="overview" aria-labelledby="overview-title">
+      <div class="wrap">
+        <p class="eyebrow">Research summary</p>
+        <h2 id="overview-title">Continuation as a training heuristic</h2>
+        <p class="prose">The method learns an approximate parametric solution to alternating-current optimal power flow (AC-OPF) using the optimization objective and constraint penalties as the training signal. It requires no solver-generated optimal labels. Two families of homotopy transformations guide training: general relaxations of the loss and constraints, and transformations that exploit power-system structure. On the reported 30-bus benchmark, these choices reduce constraint violations relative to direct penalty training.</p>
+        <div class="pillars">
+          <article class="card"><span class="num">1</span><h3>Self-supervised learning</h3><p>Evaluate generation cost and physical constraints directly on the network’s predictions.</p></article>
+          <article class="card"><span class="num">2</span><h3>A sequence of problems</h3><p>Train at a fixed homotopy parameter, advance it, and reuse the previous network weights.</p></article>
+          <article class="card"><span class="num">3</span><h3>Empirical validation</h3><p>Compare residuals on case30 and synthetic nonconvex problems. Benefits depend on the chosen transformation.</p></article>
+        </div>
+        <p class="source-note">Scientific content and reported results follow <a href="https://arxiv.org/abs/2511.11677v1">arXiv v1, 11 November 2025</a>. Publication metadata follows the IEEE record.</p>
+      </div>
+    </section>
+
+    <section class="alt" id="problem" aria-labelledby="problem-title">
+      <div class="wrap">
+        <p class="eyebrow">The problem</p>
+        <h2 id="problem-title">Dispatch generation under nonlinear AC constraints</h2>
+        <div class="two-col">
+          <div><p>AC-OPF seeks a low-cost generation dispatch that satisfies power balance and operating bounds. Here, varying active and reactive loads form the problem parameters \(\xi\); the predicted decisions are complex bus voltages \(V\), active generation \(P_g\), and reactive generation \(Q_g\).</p><p>The challenge is in training: nonlinear AC balance creates a nonconvex loss landscape, and minimizing a weighted penalty can leave substantial constraint residuals.</p></div>
+          <div class="equation-card">
+            <div class="math">\[\min_{x=[V,P_g,Q_g]}\;\sum_{g\in\mathcal N_g}\alpha_g P_g^2+\beta_gP_g+\gamma_g\]</div>
+            <div class="math">\[(P_g-P_d)+j(Q_g-Q_d)=V\odot(Y_{\mathrm{bus}}V)^*\]</div>
+            <p>Subject also to voltage-magnitude and active/reactive generation bounds, with a fixed reference-bus angle. <a href="https://arxiv.org/html/2511.11677v1#S3">Paper, Eq. (1)</a>.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="method" aria-labelledby="method-title">
+      <div class="wrap">
+        <p class="eyebrow">The method</p>
+        <h2 id="method-title">Change the training problem, retain the learned weights</h2>
+        <p class="prose">A neural policy \(x=\pi_\Theta(\xi)\) maps problem parameters to candidate decisions. During offline training, \(\lambda_H\) moves from 0 to 1. At each stage, automatic differentiation updates \(\Theta\) using the current objective and constraint penalties; the next stage starts from those weights.</p>
+        <figure class="figure graphical-abstract">
+          <a href="assets/method-overview.svg" aria-label="Open the full-size method diagram"><picture><source media="(max-width: 650px)" srcset="assets/method-overview-mobile.svg"><img src="assets/method-overview.svg" width="1100" height="650" alt="Offline training: loads pass through a neural policy to voltage and generation predictions. Homotopy-transformed objective and constraints plus the unchanged generation pull-up penalty produce a loss, differentiated back to the network weights. The schedule advances lambda with warm starts. Inference uses fixed trained weights to predict approximate decisions."></picture></a>
+          <figcaption>A redrawn overview of Sections IV-A–D and Appendix A. Homotopy acts during training; the final network produces an approximate decision in a forward pass.</figcaption>
+        </figure>
+        <div class="equation-card loss-card">
+          <div class="math">\[\mathcal L_{\lambda_H}(\Theta)=f_{\lambda_H}(x,\xi)+\sum_i w_i p_i\!\left(h_{\lambda_H,i}(x,\xi)\right)+\sum_i w_i p_i\!\left(g_{\lambda_H,i}(x,\xi)\right),\qquad x=\pi_\Theta(\xi)\]</div>
+          <p>Objective plus penalties for equality and inequality violations. The AC-OPF experiments add a generation pull-up penalty throughout the schedule. <a href="https://arxiv.org/html/2511.11677v1#S4.E5">Eq. (5)</a> and <a href="https://arxiv.org/html/2511.11677v1#A1">Appendix A</a>.</p>
+        </div>
+        <div class="two-col family-grid">
+          <article><h3>Type I · Relax the training problem</h3><ul class="components"><li><strong>Convexify Objective (CObj):</strong> interpolate from a convex surrogate to the original objective.</li><li><strong>Shrink Bounds (SBnds):</strong> gradually tighten relaxed variable bounds.</li><li><strong>Grow Penalty (GPen):</strong> increase the influence of inequality violations in the training loss.</li><li><strong>Split and Shrink (SaS):</strong> replace an equality by a tolerance band, then shrink the band toward zero.</li></ul></article>
+          <article><h3>Type II · Use power-system structure</h3><p><strong>Load stepping</strong> scales loads from zero toward their target values in the power-balance equations.</p><p><strong>Transmission (Tx) stepping</strong> interpolates the admittance matrix from nearly shorted lines to the original network:</p><div class="math">\[Y_{\lambda_H}=(1-\lambda_H)Y_0+\lambda_HY_{\mathrm{bus}}.\]</div><p>These transformations can be paired with Type I relaxations. They guide training without certifying the feasibility of the entire path.</p></article>
+        </div>
+        <aside class="note"><strong>An important AC-OPF detail.</strong> Every AC-OPF experiment also penalizes violations of \(\sum_gP_g-\sum_dP_d\ge\epsilon\), with \(\epsilon=0.01\). This generation pull-up condition stays unchanged along the schedule. It is a soft training penalty, not a projection of the output.</aside>
+
+        <div class="schedule card" aria-labelledby="schedule-title">
+          <div class="schedule-heading"><div><p class="eyebrow">Interactive explanation</p><h3 id="schedule-title">Watch an equality tolerance shrink</h3></div><span class="illustration-label">Eq. (9) · illustration</span></div>
+          <p>Split and Shrink trains with \(-\epsilon_{\lambda_H}\le h(x,\xi)\le\epsilon_{\lambda_H}\). The AC-OPF settings use \(\epsilon_H=0.01\) and \(\epsilon_L=0\).</p>
+          <div class="math">\[\epsilon_{\lambda_H}=(1-\lambda_H)\,0.01+\lambda_H\,0\]</div>
+          <svg class="tolerance-plot" viewBox="0 0 940 210" role="img" aria-labelledby="tolerance-title tolerance-desc">
+            <title id="tolerance-title">Equality tolerance band</title><desc id="tolerance-desc">At lambda zero the illustrative residual tolerance spans minus 0.01 to plus 0.01. The band shrinks to zero as lambda reaches one.</desc>
+            <text x="30" y="38" class="svg-label">Constraint residual h(x, ξ)</text>
+            <rect id="tolerance-band" x="230" y="77" width="660" height="64" rx="6" fill="#68ace5" fill-opacity="0.25"/>
+            <line x1="230" y1="109" x2="890" y2="109" stroke="#5b6470" stroke-width="1.5"/>
+            <g stroke="#5b6470"><path d="M230 102v14 M395 102v14 M560 98v22 M725 102v14 M890 102v14"/></g>
+            <g class="svg-tick" text-anchor="middle"><text x="230" y="166">−0.01</text><text x="395" y="166">−0.005</text><text x="560" y="166">0</text><text x="725" y="166">0.005</text><text x="890" y="166">0.01</text></g>
+            <line id="band-left" x1="230" y1="75" x2="230" y2="143" stroke="#002d72" stroke-width="3"/><line id="band-right" x1="890" y1="75" x2="890" y2="143" stroke="#002d72" stroke-width="3"/>
+            <text x="30" y="113" class="svg-label">Training tolerance</text>
+          </svg>
+          <div class="schedule-controls" hidden>
+            <button class="btn" id="play" type="button" aria-pressed="false">Play schedule</button>
+            <div class="slider-group"><label for="lambda"><span>Homotopy parameter λ<sub>H</sub></span> <output id="lambda-value" for="lambda">0.00</output></label><input id="lambda" type="range" min="0" max="20" value="0" step="1" aria-describedby="schedule-note"></div>
+            <p class="epsilon-readout">Tolerance ±<output id="epsilon-value">0.0100</output></p>
+          </div>
+          <p class="source-note" id="schedule-note">Each step advances λ<sub>H</sub> by 0.05. The illustration shows the scheduled tolerance only; it does not simulate training or display measured residuals. A zero target tolerance does not imply a zero achieved residual.</p>
+          <noscript><p>The static illustration shows λ<sub>H</sub> = 0. At λ<sub>H</sub> = 1, the target band has width zero.</p></noscript>
+        </div>
+        <details class="paper-figure"><summary>Original paper diagram: supervised and self-supervised learning</summary><figure class="figure"><img src="assets/paper-l2o.png" alt="Paper Figure 1 compares supervised training against solver-generated optimal labels with self-supervised training using objective and constraint evaluations." loading="lazy"><figcaption>Original Figure 1. The method on this page uses the self-supervised route.</figcaption></figure></details>
+      </div>
+    </section>
+
+    <section class="alt" id="results" aria-labelledby="results-title">
+      <div class="wrap">
+        <p class="eyebrow">Reported experiments</p>
+        <h2 id="results-title">Smaller constraint residuals on case30</h2>
+        <p class="prose">On the 30-bus AC-OPF benchmark, all six reported homotopy configurations have lower mean and maximum equality violations than the original penalty method. Tx-stepping with Grow Penalty has the smallest reported mean equality violation: <strong>0.0017 (0.0009)</strong>, compared with <strong>0.0036 (0.0027)</strong> for direct penalty training.</p>
+        <figure class="figure result-chart"><div class="plot-scroll" tabindex="0" role="region" aria-label="Case30 residual chart; scroll horizontally on small screens"><img src="assets/case30-residuals.svg" alt="Mean equality violations across 100 case30 test instances, with standard deviations: Original penalty 0.0036 (0.0027); SaS and SBnds 0.0027 (0.0015); SaS and GPen 0.0023 (0.0014); Tx and SBnds 0.0024 (0.0013); Tx and GPen 0.0017 (0.0009); Load and SBnds 0.0020 (0.0012); Load and GPen 0.0024 (0.0016)." loading="lazy"></div><figcaption>Redrawn from Table I. Points and error bars show the average and standard deviation of the per-instance mean-equality metric over 100 test instances. They are not confidence intervals or variation across training seeds.</figcaption></figure>
+        <div class="table-wrap" tabindex="0" role="region" aria-label="Table I, case30 results; scroll horizontally on small screens">
+          <table class="results"><caption>Table I · AC-OPF on case30, 100 test instances</caption><thead><tr><th scope="col">Method</th><th scope="col">Objective<br>($/h)</th><th scope="col">Mean equality<br>violation</th><th scope="col">Max equality<br>violation</th><th scope="col">Mean inequality<br>violation</th><th scope="col">Max inequality<br>violation</th></tr></thead><tbody>
+            <tr><th scope="row">SaS + SBnds</th><td>666</td><td>0.0027 (0.0015)</td><td>0.010 (0.005)</td><td>0.0000 (0.0000)</td><td>0.000 (0.001)</td></tr>
+            <tr><th scope="row">SaS + GPen</th><td>666</td><td>0.0023 (0.0014)</td><td>0.008 (0.005)</td><td>0.0000 (0.0000)</td><td>0.000 (0.000)</td></tr>
+            <tr><th scope="row">Tx-stepping + SBnds</th><td>665</td><td>0.0024 (0.0013)</td><td>0.008 (0.005)</td><td>0.0000 (0.0000)</td><td>0.000 (0.000)</td></tr>
+            <tr class="highlight"><th scope="row">Tx-stepping + GPen</th><td>665</td><td>0.0017 (0.0009)</td><td>0.006 (0.003)</td><td>0.0000 (0.0000)</td><td>0.000 (0.000)</td></tr>
+            <tr><th scope="row">Load-stepping + SBnds</th><td>666</td><td>0.0020 (0.0012)</td><td>0.007 (0.004)</td><td>0.0000 (0.0000)</td><td>0.000 (0.000)</td></tr>
+            <tr><th scope="row">Load-stepping + GPen</th><td>667</td><td>0.0024 (0.0016)</td><td>0.009 (0.005)</td><td>0.0000 (0.0000)</td><td>0.000 (0.000)</td></tr>
+            <tr class="baseline"><th scope="row">Original penalty</th><td>673</td><td>0.0036 (0.0027)</td><td>0.013 (0.010)</td><td>0.0000 (0.0000)</td><td>0.001 (0.003)</td></tr>
+          </tbody></table>
+        </div>
+        <p class="source-note">Violation entries are average (standard deviation) across test instances; units are not specified in the table. Zeros are reported at the paper’s displayed precision. Objective values describe the predicted dispatch, not a certified optimality gap. <a href="https://arxiv.org/html/2511.11677v1#S5.T1">Source: Table I</a>.</p>
+        <details class="training-details"><summary>Experimental setting and training details</summary><div class="details-body"><dl class="settings"><div><dt>Data</dt><dd>50,000 sampled load profiles; 80/10/10% train/validation/test split. Loads range from 75% to 150% of the base profile. Table I reports 100 test instances.</dd></div><div><dt>Network and optimizer</dt><dd>Two-layer cylinder network, hidden size 200; PyTorch and Adam; batch size 1,024.</dd></div><div><dt>Loss and schedule</dt><dd>Equality weight 10<sup>5</sup>; inequality, warm homotopy loss, and pull-up weights 10<sup>6</sup>. Homotopy step Δλ<sub>H</sub> = 0.05.</dd></div><div><dt>Training budget</dt><dd>Original penalty: up to 1,000 epochs. Homotopy: up to 100 epochs per stage. Early stopping is used; the schedules do not impose equal total computation.</dd></div></dl><p class="source-note"><a href="https://arxiv.org/html/2511.11677v1#A1">Appendix A</a> gives learning-rate and early-stopping settings. Hardware and inference runtimes are not reported.</p></div></details>
+        <h3 class="subsection-title">Synthetic problems expose the trade-off</h3>
+        <p class="prose">The paper also tests a nonconvex objective with random linear constraints at 5, 25, 50, and 100 variables. At 100 variables, SaS + SBnds reduces the reported mean inequality violation from <strong>0.0015 (0.0023)</strong> to <strong>0.0002 (0.0009)</strong>, while its objective is higher: <strong>272.36 versus 208.71</strong>. SaS + GPen instead has a larger mean violation, <strong>0.0031 (0.0067)</strong>. The choice of homotopy matters.</p>
+        <p class="source-note">Table II, n = 100, 100 test instances; Δλ<sub>H</sub> = 0.005 and inequality weight 500. Objective and residual units are unspecified. Lower objectives from infeasible candidates do not establish better feasible solutions. <a href="https://arxiv.org/html/2511.11677v1#S5.T2">Full results in Table II</a>.</p>
+      </div>
+    </section>
+
+    <section id="scope" aria-labelledby="scope-title">
+      <div class="wrap"><p class="eyebrow">Scope and interpretation</p><h2 id="scope-title">A useful heuristic, with empirical evidence</h2><div class="two-col"><div><h3>What the experiments establish</h3><p>The reported case30 comparisons show lower constraint violations than the original neural penalty baseline. The synthetic tests illustrate how different continuation choices affect the balance between objective value and residuals.</p></div><div><h3>What remains open</h3><p>Penalty training does not provide exact feasibility or global optimality. The manuscript reports no physical-grid deployment, inference-speed benchmark, feasibility percentage, or explicit numerical comparison with a full OPF solver. Generalization beyond the sampled load conditions is not established.</p></div></div></div>
+    </section>
+
+    <section class="alt" id="resources" aria-labelledby="resources-title">
+      <div class="wrap"><p class="eyebrow">Read and cite</p><h2 id="resources-title">Resources</h2><div class="buttons"><a class="btn btn-primary" href="https://doi.org/10.1109/PESGM58988.2026.11693405">IEEE publication ↗</a><a class="btn" href="https://arxiv.org/html/2511.11677v1">Full manuscript ↗</a><a class="btn" href="https://arxiv.org/pdf/2511.11677v1">Open PDF ↗</a><a class="btn" href="citation.bib" download>Download BibTeX</a></div><p class="resource-note">Published in the 2026 IEEE Power &amp; Energy Society General Meeting (PESGM), Montréal, Canada. No paper-specific public code or data release was identified in the verified author resources.</p>
+        <h3 id="citation">Citation</h3>
+        <div class="bibtex-box"><div class="bibtex-toolbar"><span>IEEE PESGM 2026</span><button id="copy-bibtex" class="btn" type="button" hidden>Copy BibTeX</button></div><pre><code id="bibtex">@inproceedings{li2026homotopy,
+  title = {Homotopy-Guided Self-Supervised Learning of Parametric
+           Solutions for {AC} Optimal Power Flow},
+  author = {Li, Shimiao and Tuor, Aaron and Vrabie, Draguna
+            and Pileggi, Larry and Drgona, Jan},
+  booktitle = {2026 IEEE Power \&amp; Energy Society General Meeting (PESGM)},
+  year = {2026},
+  doi = {10.1109/PESGM58988.2026.11693405},
+  url = {https://ieeexplore.ieee.org/document/11693405/}
+}</code></pre><p id="copy-status" class="source-note" role="status" aria-live="polite"></p></div>
+        <p class="source-note">The publisher’s bibliographic record was verified; the scientific presentation follows the openly available arXiv v1 manuscript, including Appendix A. The publisher full text was not available for a version-to-version comparison.</p>
+      </div>
+    </section>
+  </main>
+  <footer><div class="wrap"><p><a href="https://solaris-jhu.github.io/solaris-website/">SOLARIS Lab</a> · Johns Hopkins University</p><p>Design adapted from <a href="https://solaris-jhu.github.io/TQPNet/">TQPNet</a>. <a href="https://github.com/SOLARIS-JHU/homotopy-opf-website">Website source &amp; provenance</a>.</p><p class="funding">Research supported in part by PNNL’s Data Model Convergence initiative and the Ralph O’Connor Sustainable Energy Institute at Johns Hopkins University.</p></div></footer>
+</body>
+</html>
