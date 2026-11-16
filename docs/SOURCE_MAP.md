@@ -66,7 +66,7 @@ x = \pi_\Theta(\xi)
  + \sum_i w_i p_i(g_{\lambda_H,i}(x,\xi))
 ```
 
-The paper offers squared equality residuals and ReLU inequality penalties as examples; no corresponding public code was verified to settle every implementation convention. Appendix A adds the pull-up term.
+The paper offers squared equality residuals and ReLU inequality penalties as examples; the linked code repository has not been inspected to settle every implementation convention. Appendix A adds the pull-up term.
 
 The original objective and complex balance displayed on the page come from Eq. (1). Tx stepping is Eq. (11): `Y_lambda=(1-lambda_H)Y_0+lambda_H Y_bus`, where Y_0 is the nearly shorted network. Load stepping multiplies active/reactive demands by lambda_H in Eq. (10).
 
@@ -147,9 +147,11 @@ Institutional logo and template sources are recorded separately in the asset pro
 
 ## Code and supplementary search
 
-No paper-specific public code/data link was located in the paper, arXiv record, author home/publication pages, SOLARIS papers list or GitHub searches for title and homotopy/learning/OPF, including SOLARIS-JHU, pnnl and drgona. First-author account `ohCindy` has GridWarm, FDIAModelling and LAV-SE-synthetic-data, which concern other papers. The pnnl/neuromancer tree at commit `3f71d76088711e181624d01d3063af38c5565260` had no path containing homotopy or opf. This bounded search does not prove no implementation exists.
+On 16 November 2026, Ján Drgoňa supplied [ohCindy/homotopy-dl](https://github.com/ohCindy/homotopy-dl) as this paper's code repository and requested a link on the project website. Code buttons now appear in the opening resource row and the Resources section; the README also links to the repository.
 
-The public page consequently omits a Code button and makes no code-version audit claim. Do not present generic Neuromancer as this paper's released code. No experimental video or supplementary benchmark asset was identified. Future maintainers should verify any new code's relationship to arXiv v1 or the proceedings version before incorporating claims or results.
+Public GitHub and API requests returned HTTP 404 when the link was added. The repository contents and corresponding code version have therefore not been inspected. The user-provided association is the provenance for the link, not an implementation audit. Scientific descriptions, implementation conventions, and reported results continue to follow the published paper. Verify the repository's version and relationship to the proceedings paper before using it to revise those claims.
+
+The earlier bounded search had not located a paper-specific public code/data release. No separate experimental video or supplementary benchmark asset was identified. Do not present generic Neuromancer as this paper's released code.
 
 ## Method prose revision, 2026-11-13
 

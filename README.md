@@ -5,6 +5,7 @@ Dedicated SOLARIS research project website for **Homotopy-Guided Self-Supervised
 - [Project website](https://solaris-jhu.github.io/homotopy-opf-website/)
 - [Website repository](https://github.com/SOLARIS-JHU/homotopy-opf-website)
 - [IEEE publication](https://ieeexplore.ieee.org/document/11693405/)
+- [Research code](https://github.com/ohCindy/homotopy-dl)
 - [arXiv manuscript, version 1](https://arxiv.org/abs/2511.11677v1)
 - DOI: [10.1109/PESGM58988.2026.11693405](https://doi.org/10.1109/PESGM58988.2026.11693405)
 
